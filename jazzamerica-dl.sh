@@ -10,11 +10,21 @@
 #
 # XXXDIR must be followed by '/'
 #
-TMPDIR=/tmp/
-TRGDIR=~/
+if [ -z "$TMPDIR" ]; then
+    TMPDIR=/tmp/
+fi
 
+if [ -z "$TRGDIR" ]; then
+    TRGDIR=./
+fi
+
+
+#
+# path to voa
+#
 IDXPATH=http://russdavismoja.com/voice-america-2/
 MP3PATH="http://russdavismoja.com/Music/Jazz America Show Files/"
+
 
 #
 # $1 location of mp3 file
@@ -37,7 +47,7 @@ function prognum {
 num=`prognum $IDXPATH $1`
 f1="JA"$num"seg one.mp3"
 f2="JA"$num"seg two.mp3"
-trg=$TRGDIR/"JA"$num".mp3"
+trg=$TRGDIR"JA"$num".mp3"
 
 
 #
