@@ -23,7 +23,7 @@ select ch in $CHS; do
 	if [ "$ch" = "quit" ]; then
 	    exit
 	elif [ "$ch" = "live global" ]; then
-	    file=$LIVEURL
+	    mplayer -loop 0 $LIVEURL
 	elif [ "$ch" = "pod jazz" ]; then
 	    TRGDIR=$JADIR . jazzamerica-dl.sh
 	    file=`recentone $JADIR"JA*.mp3"`
@@ -34,6 +34,7 @@ select ch in $CHS; do
 	    continue
 	fi
 
+	# for podcast
 	if [ -e "$file" ]; then
 	    mplayer -loop 0 $file
 	fi
