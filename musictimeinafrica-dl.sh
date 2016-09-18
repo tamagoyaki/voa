@@ -38,4 +38,8 @@ function download {
 # every saturday and sunday on air
 #
 download $NUM"weeks-ago-saturday"
-download $NUM"weeks-ago-sunday"
+
+#
+# sunday's program is rerun
+#
+# download $NUM"weeks-ago-sunday"
