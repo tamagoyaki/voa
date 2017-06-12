@@ -2,7 +2,7 @@
 #
 # USAGE
 #
-#   $ everydaygrammar-dl.sh
+#   $ learningenglish-dl.sh
 #
 # NOTE
 #
@@ -16,8 +16,25 @@
 #
 
 URL=http://learningenglish.voanews.com
-LATEST=$URL/archive/everyday-grammar/latest/4456
-file=4456.html
+
+if [ "grammar" == "$1" ]; then
+    LATEST=$URL/archive/everyday-grammar/latest/4456
+    file=4456.html
+elif [ "broadcast" == "$1" ]; then
+    LATEST=$URL/z
+    file=1689.html
+else
+    echo ""
+    echo "USAGE:"
+    echo ""
+    echo "   ./learningenglish-dl [grammar|broadcast] "
+    echo ""
+    echo "       grammar : everyday grammar"
+    echo "       broadcast : learning english broadcast"
+    echo ""
+    exit
+fi
+
 url=$LATEST/$file
 
 
@@ -36,7 +53,7 @@ while [ -n "$url" ]; do
 	fi
 
 	wget -c $html
-	mp3s=`cat $fn | grep '^<audio' | sed 's/.*\(http[^$;]*\.mp3\).*\(http:.*\.mp3\).*/\1 \2/'`
+	mp3s=`cat $fn | grep '^<audio' | sed 's/.*\(https*[^$;]*\.mp3\).*\(https*:.*\.mp3\).*/\1 \2/'`
 	wget -c $mp3s
 
 	# echo $mp3s
